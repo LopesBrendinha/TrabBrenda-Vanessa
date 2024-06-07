@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-TrabbrendavaneApplication<trabbrendavane>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "trabbrendavane.trabbrendavane.TrabbrendavaneApplication",
+            "projectName": "trabbrendavane",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
