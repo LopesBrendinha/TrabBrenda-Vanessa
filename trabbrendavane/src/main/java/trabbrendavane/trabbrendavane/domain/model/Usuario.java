@@ -12,8 +12,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
+
 @Entity
-public class Usuario implements UserDetails {
+public class Usuario implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idUsuario")
@@ -23,7 +24,6 @@ public class Usuario implements UserDetails {
     private String email;
     @Column(nullable = false)
     private String senha;
-    private String foto;
     @Column(nullable = false)
     private Date dataCadastro;
     private Date dataInativacao;
@@ -54,12 +54,6 @@ public class Usuario implements UserDetails {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    public String getFoto() {
-        return foto;
-    }
-    public void setFoto(String foto) {
-        this.foto = foto;
-    }
     public Date getDataCadastro() {
         return dataCadastro;
     }
@@ -86,11 +80,11 @@ public class Usuario implements UserDetails {
     }
     @Override
     public String getPassword() {
-        return senha;
+        return getSenha();
     }
     @Override
     public String getUsername() {
-        return email;
+        return getEmail();
     }
     @Override
     public boolean isAccountNonExpired() {

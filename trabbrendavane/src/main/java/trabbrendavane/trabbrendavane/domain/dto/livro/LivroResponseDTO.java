@@ -1,42 +1,16 @@
-package trabbrendavane.trabbrendavane.domain.model;
+package trabbrendavane.trabbrendavane.domain.dto.livro;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
 import trabbrendavane.trabbrendavane.domain.Enum.EGeneroLivro;
+import trabbrendavane.trabbrendavane.domain.model.Usuario;
 
-@Entity
-@Table(name = "livro")
-public class Livro {  
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idLivro")
+public class LivroResponseDTO {
     private Long id;
-    @Column(nullable = false)
     private String autor;
-    @Column(nullable = false)
     private String titulo;
     private EGeneroLivro genero;
     private String editora;
     private String cidade;
     private int ano;
-    @ManyToOne
-    @JoinColumn(name= "idUsuario")
-    private Usuario usuario;
-
-
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
     public Long getId() {
         return id;
     }
@@ -79,5 +53,6 @@ public class Livro {
     public void setAno(int ano) {
         this.ano = ano;
     }
-     
+    
+
 }
