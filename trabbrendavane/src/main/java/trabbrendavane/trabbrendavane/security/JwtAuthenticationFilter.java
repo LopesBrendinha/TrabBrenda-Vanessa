@@ -25,8 +25,7 @@ import trabbrendavane.trabbrendavane.domain.dto.usuario.UsuarioResponseDTO;
 import trabbrendavane.trabbrendavane.domain.model.ErroResposta;
 import trabbrendavane.trabbrendavane.domain.model.Usuario;
 
-public class JwtAuthenticationFilter 
-extends UsernamePasswordAuthenticationFilter {
+public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private AuthenticationManager authenticationManager;
     private JwtUtil jwtUtil;
 

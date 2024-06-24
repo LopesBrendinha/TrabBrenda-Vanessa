@@ -13,8 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import trabbrendavane.trabbrendavane.domain.model.Usuario;
 
-public class JwtAuthorizationFilter 
-                     extends BasicAuthenticationFilter{
+public class JwtAuthorizationFilter extends BasicAuthenticationFilter{
     private JwtUtil jwtUtil;
     private UserDetailsSecurityServer userDetailsSecurityServer;
     
