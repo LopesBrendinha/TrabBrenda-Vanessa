@@ -40,12 +40,11 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response){
         try{
             LoginRequestDTO login = new ObjectMapper().readValue(request.getInputStream(), LoginRequestDTO.class);
-            UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken
-            (login.getEmail(), login.getSenha());
+            UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken (login.getEmail(), login.getSenha());
             Authentication auth = authenticationManager.authenticate(authToken);
             return auth;
         }catch(BadCredentialsException e){
-            throw new BadCredentialsException("Usuário ou Senha Inválidos!");
+            throw new BadCredentialsException("Usuario ou senha invalidos!");
         }catch(Exception e ){
             throw new InternalAuthenticationServiceException(e.getMessage());
         }
@@ -69,10 +68,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     }
 
     @Override
-    protected void unsuccessfulAuthentication(HttpServletRequest request,
-    HttpServletResponse response, 
-    AuthenticationException failed)
-    throws IOException, ServletException{
+    protected void unsuccessfulAuthentication(HttpServletRequest request,HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException{
         String dataHora = ConversorData.converterDateParaDataHora(new Date());
         ErroResposta erro = new ErroResposta(dataHora,401, "Unauthorized", failed.getMessage());
         response.setStatus(401);

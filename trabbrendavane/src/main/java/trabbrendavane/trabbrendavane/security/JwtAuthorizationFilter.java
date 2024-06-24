@@ -17,39 +17,30 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter{
     private JwtUtil jwtUtil;
     private UserDetailsSecurityServer userDetailsSecurityServer;
     
-    public JwtAuthorizationFilter(AuthenticationManager 
-    authenticationManager, JwtUtil jwtUtil, 
-    UserDetailsSecurityServer userDetailsSecurityServer) {
+    public JwtAuthorizationFilter(AuthenticationManager authenticationManager, JwtUtil jwtUtil, UserDetailsSecurityServer userDetailsSecurityServer) {
         super(authenticationManager);
         this.jwtUtil = jwtUtil;
         this.userDetailsSecurityServer = userDetailsSecurityServer;
     }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request,
-    HttpServletResponse response, FilterChain chain) throws
-    IOException, ServletException{
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException{
         String header = request.getHeader("Authorization");
         if(header != null && header.startsWith("Bearer ")){
-            UsernamePasswordAuthenticationToken auth = 
-            getAuthenticationToken(header
-            .substring(7));
+            UsernamePasswordAuthenticationToken auth = getAuthenticationToken(header.substring(7));
             if(auth != null && auth.isAuthenticated()){
-                SecurityContextHolder.getContext()
-                .setAuthentication(auth);
+                SecurityContextHolder.getContext().setAuthentication(auth);
             }
         }
         chain.doFilter(request, response);
     }
 
-    private UsernamePasswordAuthenticationToken 
-    getAuthenticationToken(String token){
+    private UsernamePasswordAuthenticationToken getAuthenticationToken(String token){
         if(jwtUtil.isValidToken(token)){
             String email = jwtUtil.getUserName(token);
             Usuario usuario = (Usuario)
             userDetailsSecurityServer.loadUserByUsername(email);
-            return new UsernamePasswordAuthenticationToken(usuario,
-             null, usuario.getAuthorities());
+            return new UsernamePasswordAuthenticationToken(usuario,null, usuario.getAuthorities());
         }
         return null;
     }

@@ -14,13 +14,11 @@ import trabbrendavane.trabbrendavane.domain.model.ErroResposta;
 
 @ControllerAdvice
 public class RestExceptionHandler {
-    @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<ErroResposta> 
+    @ExceptionHandler(ResourceNotFoundException.class) public ResponseEntity<ErroResposta> 
         handlerResourceNotFoundException(ResourceNotFoundException ex){
             String dataHora = ConversorData.converterDateParaDataHora(new Date());
             ErroResposta erro = new ErroResposta(dataHora,HttpStatus.NOT_FOUND.value(), "NOT FOUND", ex.getMessage());
-            return new ResponseEntity<>
-            (erro, HttpStatus.NOT_FOUND); 
+            return new ResponseEntity<>(erro, HttpStatus.NOT_FOUND); 
         }
 
     @ExceptionHandler(BadRequestException.class)
